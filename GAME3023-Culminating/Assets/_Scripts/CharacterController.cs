@@ -1,30 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterController : MonoBehaviour
 {
+    [Header("Character Attributes:")]
     [SerializeField]
-    float speed = 10;
+    public float MOVEMENT_BASE_SPEED = 3;
 
+    [Space]
+    [Header("Character Statistics:")]
     [SerializeField]
-    Rigidbody2D rb;
+    public Vector2 movementDirection;
+    [SerializeField]
+    public float movementSpeed;
+
+    [Space]
+    [Header("References:")]
+    [SerializeField]
+    public Rigidbody2D rb;
 
     [SerializeField]
     Animator animator;
 
-    Vector2 movementVector;
+    //Vector2 movementVector;
 
     // Update is called once per frame
     void Update()
     {
-        movementVector.x = Input.GetAxisRaw("Horizontal");
-        movementVector.y = Input.GetAxisRaw("Vertical");
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+            ProcessInputs();
+            Move();
+        }
+        Animate();
+    }
 
-        rb.MovePosition(rb.position + movementVector * speed * Time.deltaTime);
+    void ProcessInputs()
+    {
+        movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        movementSpeed = Mathf.Clamp(movementDirection.magnitude, 0.0f, 1.0f);
+        movementDirection.Normalize();
+    }
 
-        animator.SetFloat("Horizontal", movementVector.x);
-        animator.SetFloat("Vertical", movementVector.y);
-        animator.SetFloat("Speed", movementVector.sqrMagnitude);
+    void Move()
+    {
+        rb.velocity = (movementDirection * movementSpeed) * MOVEMENT_BASE_SPEED;
+    }
+
+    void Animate()
+    {
+        animator.SetFloat("Horizontal", movementDirection.x);
+        animator.SetFloat("Vertical", movementDirection.y);
+        animator.SetFloat("Speed", movementDirection.sqrMagnitude);
     }
 }

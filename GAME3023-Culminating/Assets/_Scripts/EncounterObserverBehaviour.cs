@@ -1,0 +1,44 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class EncounterObserverBehaviour : MonoBehaviour
+{
+    [Header("Tall Grass Attributes:")]
+    public float EncounterChance = 10;
+    public float CurrentEncounterChance = 0;
+    public string EncounterSceneName = "EncounterScene1";
+    public GameObject player;
+    // Start is called before the first frame update
+    void Start()
+    {
+        if(GameObject.FindWithTag("Player") == null)
+        {
+            Instantiate(player, new Vector3(1, -1, 0), Quaternion.identity);
+            player = GameObject.FindWithTag("Player");
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void TryEncounter()
+    {
+        CurrentEncounterChance = Random.Range(0.0f, 100.0f);
+        if (CurrentEncounterChance <= EncounterChance)
+        {
+            //Encounter here
+            SceneManager.LoadScene(EncounterSceneName);
+            DontDestroyOnLoad(player);
+        }
+        else
+        {
+            //No encounter here
+        }
+    }
+}
