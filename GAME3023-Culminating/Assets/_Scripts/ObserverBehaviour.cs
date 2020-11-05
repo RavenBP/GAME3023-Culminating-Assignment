@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class ObserverBehaviour : MonoBehaviour
 {
     public GameObject player;
+    //public GameObject enemy;
     Vector3 oldPlayerLocation;
     public Vector3 newPlayerLocation = new Vector3(0, 0, 0);
     // Start is called before the first frame update
@@ -23,6 +24,12 @@ public class ObserverBehaviour : MonoBehaviour
         {
             returnPlayer();
         }
+
+        //if (player.GetComponent<CharacterController>().isPlayersTurn == false) // Enemy's turn
+        //{
+        //    enemy.GetComponent<EnemyController>().EncounterDecision();
+        //    player.GetComponent<CharacterController>().isPlayersTurn = true;
+        //}
     }
 
     void placePlayer()
@@ -38,7 +45,7 @@ public class ObserverBehaviour : MonoBehaviour
         player.transform.position = newPlayerLocation;
     }
 
-    void returnPlayer()
+    public void returnPlayer() // NOTE: This was made public in order for the Flee Button to easily access this function
     {
         player.transform.position = oldPlayerLocation;
         if (player.GetComponentsInChildren<Camera>() != null)

@@ -20,11 +20,10 @@ public class CharacterController : MonoBehaviour
     [Header("References:")]
     [SerializeField]
     public Rigidbody2D rb;
-
     [SerializeField]
     public Animator animator;
 
-    //Vector2 movementVector;
+    //public bool isPlayersTurn = true;
 
     // Update is called once per frame
     void Update()
@@ -59,5 +58,23 @@ public class CharacterController : MonoBehaviour
         animator.SetFloat("Horizontal", movementDirection.x);
         animator.SetFloat("Vertical", movementDirection.y);
         animator.SetFloat("Speed", movementDirection.sqrMagnitude);
+    }
+
+    public void Ability1()
+    {
+        Debug.Log("Player used Ability1");
+        //isPlayersTurn = false;
+    }
+
+    public void Ability2()
+    {
+        Debug.Log("Player used Ability2");
+        //isPlayersTurn = false;
+    }
+
+    public void Ability3()
+    {
+        Debug.Log("Player used Ability3");
+        //isPlayersTurn = false;
     }
 }

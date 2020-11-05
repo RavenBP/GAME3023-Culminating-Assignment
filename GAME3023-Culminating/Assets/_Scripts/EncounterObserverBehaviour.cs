@@ -37,8 +37,6 @@ public class EncounterObserverBehaviour : MonoBehaviour
             //player.GetComponent<CharacterController>().animator.SetBool("InEncounter", true);
             DontDestroyOnLoad(player);
             //player.GetComponent<CharacterController>().animator.Play("Base Layer.PlayerIdle");
-
-            //player.GetComponent<CharacterController>().rb.velocity = Vector3.zero;
         }
         else
         {

@@ -40,4 +40,18 @@ public class EnemyController : MonoBehaviour
     {
         
     }
+
+    public void EncounterDecision()
+    {
+        int randomInt = Random.Range(0, 10);
+
+        if (randomInt > 5)
+        {
+            Debug.Log("Enemy used Ability1");
+        }
+        else
+        {
+            Debug.Log("Enemy used Ability2");
+        }
+    }
 }
