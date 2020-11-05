@@ -16,7 +16,7 @@ public class EncounterObserverBehaviour : MonoBehaviour
     {
         if(GameObject.FindWithTag("Player") == null)
         {
-            Instantiate(player, new Vector3(1, -1, 0), Quaternion.identity);
+            Instantiate(player, new Vector3(1, -1, 0), Quaternion.identity); // NOTE: I believe that since the player is being instantiated here, the animator is being "lost" whenever the player returns from the EncounterScene
             player = GameObject.FindWithTag("Player");
         }
     }
@@ -34,7 +34,11 @@ public class EncounterObserverBehaviour : MonoBehaviour
         {
             //Encounter here
             SceneManager.LoadScene(EncounterSceneName);
+            //player.GetComponent<CharacterController>().animator.SetBool("InEncounter", true);
             DontDestroyOnLoad(player);
+            //player.GetComponent<CharacterController>().animator.Play("Base Layer.PlayerIdle");
+
+            //player.GetComponent<CharacterController>().rb.velocity = Vector3.zero;
         }
         else
         {

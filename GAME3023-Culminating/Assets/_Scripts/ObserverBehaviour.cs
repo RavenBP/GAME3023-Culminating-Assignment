@@ -47,6 +47,7 @@ public class ObserverBehaviour : MonoBehaviour
             player.GetComponentsInChildren<Camera>()[0].enabled = true;
         }
         SceneManager.LoadScene("GameScene");
+        //player.GetComponent<CharacterController>().animator.SetBool("InEncounter", false);
         DontDestroyOnLoad(player);
     }
 }

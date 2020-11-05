@@ -22,7 +22,7 @@ public class CharacterController : MonoBehaviour
     public Rigidbody2D rb;
 
     [SerializeField]
-    Animator animator;
+    public Animator animator;
 
     //Vector2 movementVector;
 
@@ -33,6 +33,11 @@ public class CharacterController : MonoBehaviour
         {
             ProcessInputs();
             Move();
+            animator.SetBool("InEncounter", false); // NOTE: Animations may need to be set here if another way cannot be found...
+        }
+        else if (SceneManager.GetActiveScene().name == "EncounterScene1")
+        {
+            animator.SetBool("InEncounter", true);
         }
         Animate();
     }
