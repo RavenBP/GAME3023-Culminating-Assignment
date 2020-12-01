@@ -10,10 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 279203471822799822}
   - component: {fileID: 279203471822799821}
-  - component: {fileID: 279203471822799823}
   - component: {fileID: 279203471822799816}
   - component: {fileID: 279203471822799817}
   - component: {fileID: 279203471822799818}
+  - component: {fileID: -8104907883142239924}
+  - component: {fileID: 279203471822799823}
+  - component: {fileID: 934183970681345072}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -88,23 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &279203471822799823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279203471822799820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45ea0661aa5626746b1e8136ace8f514, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MOVEMENT_BASE_SPEED: 3
-  movementDirection: {x: 0, y: 0}
-  movementSpeed: 0
-  rb: {fileID: 279203471822799817}
-  animator: {fileID: 279203471822799818}
 --- !u!61 &279203471822799816
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -171,6 +156,142 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &-8104907883142239924
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279203471822799820}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 85e0b8df01d14284986495692cab5156, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &279203471822799823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279203471822799820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ea0661aa5626746b1e8136ace8f514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MOVEMENT_BASE_SPEED: 3
+  movementDirection: {x: 0, y: 0}
+  movementSpeed: 0
+  rb: {fileID: 279203471822799817}
+  animator: {fileID: 279203471822799818}
+--- !u!114 &934183970681345072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279203471822799820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e4287986cd6ec4fb840fb474457fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepSource: {fileID: -8104907883142239924}
+  testTilemap: {fileID: 0}
+  footstepClips:
+  - {fileID: 8300000, guid: 4004a8293bd621c4ab655ca584558518, type: 3}
+  - {fileID: 8300000, guid: 85e0b8df01d14284986495692cab5156, type: 3}
+  player: {fileID: 279203471822799820}
+  tilemap: {fileID: 0}
+  grassTile: {fileID: 11400000, guid: 1034518b62ccccb44a405b0ca40f3aad, type: 2}
+  floorTile: {fileID: 11400000, guid: 6ce1e334793f3f34886f82d4522ba683, type: 2}
+  gravelTile: {fileID: 11400000, guid: 0392357de3c343641b2180310b743a27, type: 2}
+  woodTile: {fileID: 11400000, guid: 40a54289361c6f14587cf60c81fbb135, type: 2}
 --- !u!1 &279203473381224504
 GameObject:
   m_ObjectHideFlags: 0

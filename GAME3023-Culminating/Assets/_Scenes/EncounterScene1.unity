@@ -2144,7 +2144,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898800734}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &898800737
 Camera:
   m_ObjectHideFlags: 0
@@ -13328,7 +13328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50714f7bc925aae418aad590f40dad89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 0}
 --- !u!114 &1262864708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13442,7 +13441,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 279203471822799820, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
-  enemy: {fileID: 8267459899018412444, guid: 2a8feef74dd6a864ea02476028b4b7e2, type: 3}
   newPlayerLocation: {x: 23, y: -5, z: 0}
 --- !u!4 &1311292926
 Transform:
