@@ -17,14 +17,11 @@ public class EncounterObserverBehaviour : MonoBehaviour
         if(GameObject.FindWithTag("Player") == null)
         {
             Instantiate(player, new Vector3(1, -1, 0), Quaternion.identity); // NOTE: I believe that since the player is being instantiated here, the animator is being "lost" whenever the player returns from the EncounterScene
-            player = GameObject.FindWithTag("Player");
-        }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            player = GameObject.FindWithTag("Player");
+
+            LoadLastSave();
+        }
     }
 
     public void TryEncounter()
@@ -42,5 +39,18 @@ public class EncounterObserverBehaviour : MonoBehaviour
         {
             //No encounter here
         }
+    }
+
+    void LoadLastSave()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        player.transform.position = position;
+
+        Debug.Log("Position Loaded as: " + transform.position);
     }
 }

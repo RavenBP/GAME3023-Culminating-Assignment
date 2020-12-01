@@ -26,7 +26,7 @@ public class CharacterController : MonoBehaviour
     //public bool isPlayersTurn = true;
     private GameObject playerGO; // NOTE: This is used because of the way the player is being handled/instantiated
 
-    public void SavePlayer()
+    public void SavePlayer() // For Menu UI
     {
         playerGO = GameObject.FindWithTag("Player");
         SaveSystem.SavePlayer(playerGO.GetComponent<CharacterController>());
@@ -35,7 +35,7 @@ public class CharacterController : MonoBehaviour
         Debug.Log("This position: " + playerGO.transform.position);
     }
 
-    public void LoadPlayer()
+    public void LoadPlayer() // For Menu UI
     {
         playerGO = GameObject.FindWithTag("Player");
         PlayerData data = SaveSystem.LoadPlayer();
