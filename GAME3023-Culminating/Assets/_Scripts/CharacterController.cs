@@ -24,6 +24,30 @@ public class CharacterController : MonoBehaviour
     public Animator animator;
 
     //public bool isPlayersTurn = true;
+    private GameObject playerGO; // NOTE: This is used because of the way the player is being handled/instantiated
+
+    public void SavePlayer()
+    {
+        playerGO = GameObject.FindWithTag("Player");
+        SaveSystem.SavePlayer(playerGO.GetComponent<CharacterController>());
+
+        Debug.Log("Position Saved as: " + playerGO.transform.position);
+        Debug.Log("This position: " + playerGO.transform.position);
+    }
+
+    public void LoadPlayer()
+    {
+        playerGO = GameObject.FindWithTag("Player");
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        playerGO.transform.position = position;
+
+        Debug.Log("Position Loaded as: " + transform.position);
+    }
 
     // Update is called once per frame
     void Update()
