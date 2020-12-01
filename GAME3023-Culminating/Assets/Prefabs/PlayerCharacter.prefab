@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279203471822799820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.62, y: -0.72, z: -1.63}
+  m_LocalPosition: {x: 7.2646265, y: -3.496735, z: -1.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 279203473381224644}
@@ -282,12 +282,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footstepSource: {fileID: -8104907883142239924}
-  testTilemap: {fileID: 0}
   footstepClips:
   - {fileID: 8300000, guid: 4004a8293bd621c4ab655ca584558518, type: 3}
   - {fileID: 8300000, guid: 85e0b8df01d14284986495692cab5156, type: 3}
   player: {fileID: 279203471822799820}
-  tilemap: {fileID: 0}
   grassTile: {fileID: 11400000, guid: 1034518b62ccccb44a405b0ca40f3aad, type: 2}
   floorTile: {fileID: 11400000, guid: 6ce1e334793f3f34886f82d4522ba683, type: 2}
   gravelTile: {fileID: 11400000, guid: 0392357de3c343641b2180310b743a27, type: 2}
