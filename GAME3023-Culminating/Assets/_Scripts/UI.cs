@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField]
-    CharacterController characterController;
-
     public void PlayGame()
     {
         SceneManager.LoadScene("GameScene");
