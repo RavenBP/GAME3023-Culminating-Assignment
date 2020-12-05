@@ -28,12 +28,9 @@ public class Footsteps : MonoBehaviour
 
     private GameObject tilemapGO;
 
-// Play appropriate sound for specified tile.
-void PlayFootstepSound()
+    // Play appropriate sound for specified tile.
+    void PlayFootstepSound()
     {
-        // NOTE: Some grass-like tiles are not referenced here, however the sound will still play...
-        // This works for now, but it could be fixed.
-
         if (SceneManager.GetActiveScene().name == "GameScene")
         {
             tilemapGO = GameObject.FindWithTag("BaseTilemap");
