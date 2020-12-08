@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8267459899018412451}
   - component: {fileID: 8267459899018412450}
   - component: {fileID: 8267459899018412445}
-  - component: {fileID: 4680463796985138074}
+  - component: {fileID: -8662301668712558648}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -103,7 +103,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4680463796985138074
+--- !u!114 &-8662301668712558648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,7 @@ MonoBehaviour:
   enemyHealth: 75
   biteDamage: 15
   lightningDamage: 10
-  lightningStunChance: 75
+  lightningStunChance: 50
   fleeChance: 33
   struggleChance: 25
   scoreValue: 50

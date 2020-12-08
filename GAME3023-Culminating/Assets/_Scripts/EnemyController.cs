@@ -11,7 +11,7 @@ public class EnemyController : Combatent
     public float biteDamage = 15;
     public float lightningDamage = 10;
     public float lightningStunChance = 50;
-    public float fleeChance = 33;
+    public float fleeChance = 75;
     public float struggleChance = 25;
     public int scoreValue = 50;
     public bool isStunned = false;
@@ -62,7 +62,11 @@ public class EnemyController : Combatent
 
     public void EncounterDecision()
     {
-        int randomInt = Random.Range(0, 10);
+        int randomInt = Random.Range(0, 11);
+        if (enemyHealth < 25)
+        {
+            randomInt = Random.Range(0, 15);
+        }
         if(!isStunned)
         {
             if (randomInt <= 4)
@@ -99,7 +103,10 @@ public class EnemyController : Combatent
                 randomInt = Random.Range(0, 100);
                 if (randomInt <= fleeChance)
                 {
-                    //Enemy Runs, give player win.
+                    obsScript.SetText("The Enemy has fled the battle");
+                    player.GetComponent<CharacterController>().AwardPlayer(scoreValue);
+                    observer.GetComponent<ObserverBehaviour>().PlayerWins(true);
+                    Destroy(this.gameObject);
                 }
             }
             else
