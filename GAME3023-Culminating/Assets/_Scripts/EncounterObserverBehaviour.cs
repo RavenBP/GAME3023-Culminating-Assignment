@@ -12,6 +12,8 @@ public class EncounterObserverBehaviour : MonoBehaviour
     public string EncounterSceneName = "EncounterScene1";
     public GameObject player;
     public bool testEncounterSwitch = false;
+
+
     // Start is called before the first frame update
     void Start()
     {

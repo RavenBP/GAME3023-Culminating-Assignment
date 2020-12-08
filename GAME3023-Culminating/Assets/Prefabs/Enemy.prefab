@@ -115,4 +115,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334eec06fa4d177419150f6141b5d53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 100
+  hpMax: 100
   animator: {fileID: 8267459899018412445}
+  enemyHealth: 75
+  biteDamage: 15
+  lightningDamage: 10
+  lightningStunChance: 75
+  fleeChance: 33
+  struggleChance: 25
+  scoreValue: 50
+  isStunned: 0

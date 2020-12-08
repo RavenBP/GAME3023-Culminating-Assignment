@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class CharacterController : MonoBehaviour
 {
     [SerializeField]
-<<<<<<< Updated upstream
-    float speed = 10;
-=======
+
     public float MOVEMENT_BASE_SPEED = 3;
     public bool isAbility3Locked = true;
     public bool isAbility4Locked = true;
@@ -19,6 +20,8 @@ public class CharacterController : MonoBehaviour
     public float stunChance = 33;
     public bool isCharged = false;
     public bool isStunned = false;
+    public GameObject pauseCanvas;
+    bool isPaused = false;
 
 
     [Space]
@@ -38,6 +41,7 @@ public class CharacterController : MonoBehaviour
 
     private GameObject observer;
     private GameObject playerGO; // NOTE: This is used because of the way the player is being handled/instantiated
+    private ObserverBehaviour obsScript;
 
     void Start()
     {
@@ -75,22 +79,15 @@ public class CharacterController : MonoBehaviour
 
         Debug.Log("Position Loaded as: " + transform.position);
     }
->>>>>>> Stashed changes
 
-    // Update is called once per frame
     void Update()
     {
-<<<<<<< Updated upstream
-        // Vector2 for X, Y movement
-        Vector2 movementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * speed * Time.deltaTime;
 
-        // Translate character's transform to create movement
-        transform.Translate(movementVector);
-=======
         if (SceneManager.GetActiveScene().name == "GameScene")
         {
             ProcessInputs();
             Move();
+            Animate();
             animator.SetBool("InEncounter", false); // NOTE: Animations may need to be set here if another way cannot be found...
 
         }
@@ -98,7 +95,6 @@ public class CharacterController : MonoBehaviour
         {
             animator.SetBool("InEncounter", true);
         }
-        Animate();
         //Debug.Log(isPlayersTurn);
     }
 
@@ -124,7 +120,9 @@ public class CharacterController : MonoBehaviour
     public void UseAbility(int abilityID)
     {
         observer = GameObject.FindWithTag("CombatObserver");
-        if(playerTurn)
+        obsScript = observer.GetComponent<ObserverBehaviour>();
+
+        if (playerTurn)
         {
             GameObject enemy = GameObject.FindWithTag("Enemy"); //This should probably be moved to ObserverBehaviour
             int randomInt = Random.Range(0, 10);
@@ -133,11 +131,13 @@ public class CharacterController : MonoBehaviour
                 if (abilityID == 1)
                 {
                     Debug.Log("Player used Slash");
+                    obsScript.SetText("Player used Slash!");
                     enemy.GetComponent<EnemyController>().DamageEnemy(slashDamage);
                 }
                 else if (abilityID == 2)
                 {
                     Debug.Log("Player used Quick Strike");
+                    obsScript.SetText("Player used Quick Strike!");
                     randomInt = Random.Range(0, 100);
                     if (randomInt <= quickStrikeCritChance)
                     {
@@ -151,6 +151,8 @@ public class CharacterController : MonoBehaviour
                 else if (abilityID == 3)
                 {
                     Debug.Log("Player used Thunderbolt");
+                    randomInt = Random.Range(0, 100);
+                    obsScript.SetText("Player used Thunderbolt!");
                     enemy.GetComponent<EnemyController>().DamageEnemy(slashDamage * 2);
                     if (randomInt <= stunChance)
                     {
@@ -162,6 +164,7 @@ public class CharacterController : MonoBehaviour
                     if (!isCharged)
                     {
                         Debug.Log("Player is charging up");
+                        obsScript.SetText("Player is charging up...");
                         isCharged = true;
                     }
                     else
@@ -169,12 +172,14 @@ public class CharacterController : MonoBehaviour
                         enemy.GetComponent<EnemyController>().DamageEnemy(enemy.GetComponent<EnemyController>().enemyHealth - 1);
                         isCharged = false;
                         Debug.Log("Player lands a massive strike!");
+                        obsScript.SetText("Player lands a massive strike!");
                     }
                 }
             }
             else
             {
                 Debug.Log("You are stunned.");
+                obsScript.SetText("Player is stunned.");
                 isStunned = false;
             }
             playerTurn = false;
@@ -209,6 +214,7 @@ public class CharacterController : MonoBehaviour
         {
             TriggerDeath();
             Debug.Log("You have died.");
+            obsScript.SetText("You have been defeated.");
         }
     }
 
@@ -229,6 +235,21 @@ public class CharacterController : MonoBehaviour
         {
             isAbility4Locked = false;
         }
->>>>>>> Stashed changes
+    }
+
+    public void PauseGame()
+    {
+        //pauseCanvas = GameObject.FindWithTag("PauseCanvas");
+        isPaused = true;
+        Time.timeScale = 0;
+        pauseCanvas.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        //pauseCanvas = GameObject.FindWithTag("PauseCanvas");
+        isPaused = false;
+        Time.timeScale = 1;
+        pauseCanvas.SetActive(false);
     }
 }
