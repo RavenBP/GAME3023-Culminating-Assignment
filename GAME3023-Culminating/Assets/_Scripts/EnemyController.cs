@@ -6,6 +6,8 @@ public class EnemyController : Combatent
 {
     [SerializeField]
     Animator animator;
+    [SerializeField]
+    AudioClip[] audioClips;
 
     public float enemyHealth = 75;
     public float biteDamage = 15;
@@ -20,6 +22,8 @@ public class EnemyController : Combatent
     private GameObject observer;
     private ObserverBehaviour obsScript;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +31,7 @@ public class EnemyController : Combatent
         player = GameObject.FindWithTag("Player");
         observer = GameObject.FindWithTag("CombatObserver");
         obsScript = observer.GetComponent<ObserverBehaviour>();
+        audioSource = GetComponent<AudioSource>();
         // Randomly select between animation clips
         if (randomInt >= 0 && randomInt <= 2)
         {
@@ -54,12 +59,6 @@ public class EnemyController : Combatent
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void EncounterDecision()
     {
         int randomInt = Random.Range(0, 11);
@@ -73,12 +72,20 @@ public class EnemyController : Combatent
             {
                 Debug.Log("Enemy used Bite");
                 obsScript.SetText("Enemy used Bite!");
+
+                audioSource.clip = audioClips[0];
+                audioSource.Play();
+
                 player.GetComponent<CharacterController>().DamagePlayer(biteDamage);
             }
             else if (randomInt == 5 || randomInt == 6 || randomInt == 7)
             {
                 Debug.Log("Enemy used Struggle");
                 obsScript.SetText("Enemy used Struggle!");
+
+                audioSource.clip = audioClips[2];
+                audioSource.Play();
+
                 randomInt = Random.Range(0, 100);
                 if (randomInt <= struggleChance)
                 {
@@ -89,6 +96,10 @@ public class EnemyController : Combatent
             {
                 Debug.Log("Enemy used Lightning Strike");
                 obsScript.SetText("Enemy used Lightning Strike!");
+
+                audioSource.clip = audioClips[1];
+                audioSource.Play();
+
                 player.GetComponent<CharacterController>().DamagePlayer(lightningDamage);
                 randomInt = Random.Range(0, 100);
                 if (randomInt <= lightningStunChance)
@@ -111,6 +122,7 @@ public class EnemyController : Combatent
             }
             else
             {
+                obsScript.SetText("Enemy did nothing");
                 Debug.Log("Enemy has made an error.");
             }
         }

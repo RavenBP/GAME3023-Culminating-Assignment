@@ -983,9 +983,9 @@ RectTransform:
   m_Father: {fileID: 286074209}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -506, y: 384}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 75, y: -75}
   m_SizeDelta: {x: 80, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &501452195
@@ -1202,10 +1202,10 @@ RectTransform:
   m_Father: {fileID: 286074209}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -37, y: -46}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 125, y: -50.00003}
+  m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &552296200
 MonoBehaviour:
@@ -2645,9 +2645,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 279203471822799823, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
+      propertyPath: audioClips.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 279203471822799823, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
       propertyPath: pauseCanvas
       value: 
       objectReference: {fileID: 286074204}
+    - target: {fileID: 279203471822799823, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
+      propertyPath: audioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8b01dc9799f52a640be3e4fe2094f62a, type: 3}
+    - target: {fileID: 279203471822799823, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
+      propertyPath: audioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5707b30a7934cab42af42153068470b4, type: 3}
+    - target: {fileID: 279203471822799823, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
+      propertyPath: audioClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: fb0105c13089ed54d98737656106bb8d, type: 3}
+    - target: {fileID: 279203471822799823, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
+      propertyPath: audioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: d4da8fc341c66074d8f9e81166796250, type: 3}
+    - target: {fileID: 279203471822799823, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
+      propertyPath: audioClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: a5dbb518c1078154697a748913d8ec7d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
 --- !u!1 &2057516586
@@ -2684,10 +2708,10 @@ RectTransform:
   m_Father: {fileID: 286074209}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -37, y: -99}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 125, y: -138}
+  m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2057516588
 MonoBehaviour:

@@ -39,12 +39,21 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     public Animator animator;
 
+    [Space]
+    [Header("Abilities:")]
+    [SerializeField]
+    AudioClip[] audioClips;
+
+
+    private AudioSource audioSource;
     private GameObject observer;
     private GameObject playerGO; // NOTE: This is used because of the way the player is being handled/instantiated
     private ObserverBehaviour obsScript;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         DontDestroyOnLoad(this.gameObject);
     }
 
@@ -132,12 +141,20 @@ public class CharacterController : MonoBehaviour
                 {
                     Debug.Log("Player used Slash");
                     obsScript.SetText("Player used Slash!");
+
+                    audioSource.clip = audioClips[0];
+                    audioSource.Play();
+
                     enemy.GetComponent<EnemyController>().DamageEnemy(slashDamage);
                 }
                 else if (abilityID == 2)
                 {
                     Debug.Log("Player used Quick Strike");
                     obsScript.SetText("Player used Quick Strike!");
+
+                    audioSource.clip = audioClips[1];
+                    audioSource.Play();
+
                     randomInt = Random.Range(0, 100);
                     if (randomInt <= quickStrikeCritChance)
                     {
@@ -153,6 +170,10 @@ public class CharacterController : MonoBehaviour
                     Debug.Log("Player used Thunderbolt");
                     randomInt = Random.Range(0, 100);
                     obsScript.SetText("Player used Thunderbolt!");
+
+                    audioSource.clip = audioClips[2];
+                    audioSource.Play();
+
                     enemy.GetComponent<EnemyController>().DamageEnemy(slashDamage * 2);
                     if (randomInt <= stunChance)
                     {
@@ -165,11 +186,19 @@ public class CharacterController : MonoBehaviour
                     {
                         Debug.Log("Player is charging up");
                         obsScript.SetText("Player is charging up...");
+
+                        audioSource.clip = audioClips[3];
+                        audioSource.Play();
+
                         isCharged = true;
                     }
                     else
                     {
                         enemy.GetComponent<EnemyController>().DamageEnemy(enemy.GetComponent<EnemyController>().enemyHealth - 1);
+
+                        audioSource.clip = audioClips[4];
+                        audioSource.Play();
+
                         isCharged = false;
                         Debug.Log("Player lands a massive strike!");
                         obsScript.SetText("Player lands a massive strike!");
