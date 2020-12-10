@@ -101,7 +101,6 @@ public class ObserverBehaviour : MonoBehaviour
 
         player.GetComponent<CharacterController>().Health = 100;
         returnPlayer();
-        player.GetComponent<CharacterController>().LoadPlayer();
     }
 
     IEnumerator LossMessage(float time)
@@ -110,6 +109,7 @@ public class ObserverBehaviour : MonoBehaviour
 
         player.GetComponent<CharacterController>().Health = 100;
         returnPlayer();
+        player.GetComponent<CharacterController>().LoadPlayer();
     }
 
     public void SetText(string message)

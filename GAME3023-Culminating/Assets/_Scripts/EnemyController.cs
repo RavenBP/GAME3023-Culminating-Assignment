@@ -64,7 +64,7 @@ public class EnemyController : Combatent
         int randomInt = Random.Range(0, 11);
         if (enemyHealth < 25)
         {
-            randomInt = Random.Range(0, 15);
+            randomInt = Random.Range(0, 13);
         }
         if(!isStunned)
         {
@@ -107,7 +107,7 @@ public class EnemyController : Combatent
                     player.GetComponent<CharacterController>().isStunned = true;
                 }
             }
-            else if (randomInt == 10)
+            else if (randomInt >= 10)
             {
                 Debug.Log("Enemy has tried to run");
                 obsScript.SetText("Enemy tried to run!");
