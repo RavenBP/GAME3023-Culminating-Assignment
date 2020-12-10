@@ -13,7 +13,6 @@ public class EncounterObserverBehaviour : MonoBehaviour
     public GameObject player;
     public bool testEncounterSwitch = false;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -44,9 +43,7 @@ public class EncounterObserverBehaviour : MonoBehaviour
         {
             //Encounter here
             SceneManager.LoadScene(EncounterSceneName);
-            //player.GetComponent<CharacterController>().animator.SetBool("InEncounter", true);
             DontDestroyOnLoad(player);
-            //player.GetComponent<CharacterController>().animator.Play("Base Layer.PlayerIdle");
         }
     }
 

@@ -62,10 +62,12 @@ public class EnemyController : Combatent
     public void EncounterDecision()
     {
         int randomInt = Random.Range(0, 11);
+
         if (enemyHealth < 25)
         {
             randomInt = Random.Range(0, 13);
         }
+
         if(!isStunned)
         {
             if (randomInt <= 4)
@@ -87,6 +89,7 @@ public class EnemyController : Combatent
                 audioSource.Play();
 
                 randomInt = Random.Range(0, 100);
+
                 if (randomInt <= struggleChance)
                 {
                     player.GetComponent<CharacterController>().DamagePlayer(player.GetComponent<CharacterController>().Health);
@@ -102,6 +105,7 @@ public class EnemyController : Combatent
 
                 player.GetComponent<CharacterController>().DamagePlayer(lightningDamage);
                 randomInt = Random.Range(0, 100);
+
                 if (randomInt <= lightningStunChance)
                 {
                     player.GetComponent<CharacterController>().isStunned = true;
@@ -112,6 +116,7 @@ public class EnemyController : Combatent
                 Debug.Log("Enemy has tried to run");
                 obsScript.SetText("Enemy tried to run!");
                 randomInt = Random.Range(0, 100);
+
                 if (randomInt <= fleeChance)
                 {
                     obsScript.SetText("The Enemy has fled the battle");
@@ -137,6 +142,7 @@ public class EnemyController : Combatent
     public void DamageEnemy(float damage)
     {
         enemyHealth -= damage;
+
         if (enemyHealth <= 0)
         {
             TriggerDeath();
@@ -150,6 +156,5 @@ public class EnemyController : Combatent
         player.GetComponent<CharacterController>().AwardPlayer(scoreValue);
         observer.GetComponent<ObserverBehaviour>().PlayerWins(true);
         Destroy(this.gameObject);
-
     }
 }

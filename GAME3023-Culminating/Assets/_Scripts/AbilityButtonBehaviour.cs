@@ -6,16 +6,12 @@ public class AbilityButtonBehaviour : MonoBehaviour
 {
     public int abilityID;
     GameObject player;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
         player = GameObject.FindWithTag("Player");
+
         if (player.GetComponent<CharacterController>().AbilityLockCheck(abilityID))
         {
             this.gameObject.SetActive(false);

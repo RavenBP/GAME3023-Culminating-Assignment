@@ -10,10 +10,4 @@ public class PauseCanvasScript : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         gameObject.SetActive(false);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

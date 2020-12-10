@@ -15,6 +15,7 @@ public class ObserverBehaviour : MonoBehaviour
     private string endBattleMessage;
     Vector3 oldPlayerLocation;
     public Vector3 newPlayerLocation = new Vector3(0, 0, 0);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,6 @@ public class ObserverBehaviour : MonoBehaviour
             returnPlayer();
         }
 
-        //player = GameObject.FindWithTag("Player");
         if (!player.GetComponent<CharacterController>().playerTurn && turnSwitch) // Enemy's turn   
         {
             turnSwitch = false;
@@ -65,7 +65,6 @@ public class ObserverBehaviour : MonoBehaviour
             player.GetComponentsInChildren<Camera>()[0].enabled = true;
         }
         SceneManager.LoadScene("GameScene");
-        //player.GetComponent<CharacterController>().animator.SetBool("InEncounter", false);
         DontDestroyOnLoad(player);
     }
 
@@ -96,7 +95,6 @@ public class ObserverBehaviour : MonoBehaviour
     IEnumerator WinMessage(float time)
     {
         //Print victory message
-
         yield return new WaitForSeconds(time);
 
         player.GetComponent<CharacterController>().Health = 100;

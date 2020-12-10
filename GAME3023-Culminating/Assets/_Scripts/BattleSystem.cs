@@ -10,7 +10,6 @@ enum BattlePhase
     Count
 }
 
-
 public class BattleSystem : MonoBehaviour
 {
     [SerializeField]
@@ -18,22 +17,9 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField]
     Combatent[] combatents;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void AdvanceTurns()
     {
-        
-
         phase++;
         if(phase > BattlePhase.Count)
         {

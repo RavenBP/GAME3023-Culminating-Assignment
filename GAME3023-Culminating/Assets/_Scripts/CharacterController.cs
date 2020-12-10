@@ -12,7 +12,6 @@ public class CharacterController : MonoBehaviour
     public float MOVEMENT_BASE_SPEED = 3;
     public bool isAbility3Locked = true;
     public bool isAbility4Locked = true;
-    private bool isPlayersTurn = true;
     public bool playerTurn = true;
     public float Health = 100;
     public float slashDamage = 15;
@@ -21,8 +20,6 @@ public class CharacterController : MonoBehaviour
     public bool isCharged = false;
     public bool isStunned = false;
     public GameObject pauseCanvas;
-    bool isPaused = false;
-
 
     [Space]
     [Header("Character Statistics:")]
@@ -98,13 +95,11 @@ public class CharacterController : MonoBehaviour
             Move();
             Animate();
             animator.SetBool("InEncounter", false); // NOTE: Animations may need to be set here if another way cannot be found...
-
         }
         else if (SceneManager.GetActiveScene().name == "EncounterScene1")
         {
             animator.SetBool("InEncounter", true);
         }
-        //Debug.Log(isPlayersTurn);
     }
 
     void ProcessInputs()
@@ -135,6 +130,7 @@ public class CharacterController : MonoBehaviour
         {
             GameObject enemy = GameObject.FindWithTag("Enemy"); //This should probably be moved to ObserverBehaviour
             int randomInt = Random.Range(0, 10);
+
             if (!isStunned)
             {
                 if (abilityID == 1)
@@ -156,6 +152,7 @@ public class CharacterController : MonoBehaviour
                     audioSource.Play();
 
                     randomInt = Random.Range(0, 100);
+
                     if (randomInt <= quickStrikeCritChance)
                     {
                         enemy.GetComponent<EnemyController>().DamageEnemy(slashDamage * 2);
@@ -175,6 +172,7 @@ public class CharacterController : MonoBehaviour
                     audioSource.Play();
 
                     enemy.GetComponent<EnemyController>().DamageEnemy(slashDamage * 2);
+
                     if (randomInt <= stunChance)
                     {
                         enemy.GetComponent<EnemyController>().isStunned = true;
@@ -239,6 +237,7 @@ public class CharacterController : MonoBehaviour
     public void DamagePlayer(float damage)
     {
         Health -= damage;
+
         if (Health <= 0)
         {
             TriggerDeath();
@@ -268,16 +267,12 @@ public class CharacterController : MonoBehaviour
 
     public void PauseGame()
     {
-        //pauseCanvas = GameObject.FindWithTag("PauseCanvas");
-        isPaused = true;
         Time.timeScale = 0;
         pauseCanvas.SetActive(true);
     }
 
     public void ResumeGame()
     {
-        //pauseCanvas = GameObject.FindWithTag("PauseCanvas");
-        isPaused = false;
         Time.timeScale = 1;
         pauseCanvas.SetActive(false);
     }
