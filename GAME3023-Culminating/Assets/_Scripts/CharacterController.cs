@@ -1,13 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 
 public class CharacterController : MonoBehaviour
 {
-    [Header("Character Attributes:")]
     [SerializeField]
+
     public float MOVEMENT_BASE_SPEED = 3;
+    public bool isAbility3Locked = true;
+    public bool isAbility4Locked = true;
+    private bool isPlayersTurn = true;
+    public bool playerTurn = true;
+    public float Health = 100;
+    public float slashDamage = 15;
+    public float quickStrikeCritChance = 50;
+    public float stunChance = 33;
+    public bool isCharged = false;
+    public bool isStunned = false;
+    public GameObject pauseCanvas;
+    bool isPaused = false;
+
 
     [Space]
     [Header("Character Statistics:")]
@@ -15,6 +30,7 @@ public class CharacterController : MonoBehaviour
     public Vector2 movementDirection;
     [SerializeField]
     public float movementSpeed;
+    public int playerScore = 0;
 
     [Space]
     [Header("References:")]
@@ -23,8 +39,14 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     public Animator animator;
 
-    //public bool isPlayersTurn = true;
+    private GameObject observer;
     private GameObject playerGO; // NOTE: This is used because of the way the player is being handled/instantiated
+    private ObserverBehaviour obsScript;
+
+    void Start()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     public void SavePlayer() // For Menu UI
     {
@@ -46,23 +68,34 @@ public class CharacterController : MonoBehaviour
         position.z = data.position[2];
         playerGO.transform.position = position;
 
+        if (!data.ability3Locked)
+        {
+            isAbility3Locked = false;
+        }
+        if (!data.ability4Locked)
+        {
+            isAbility4Locked = false;
+        }
+
         Debug.Log("Position Loaded as: " + transform.position);
     }
 
-    // Update is called once per frame
     void Update()
     {
+
         if (SceneManager.GetActiveScene().name == "GameScene")
         {
             ProcessInputs();
             Move();
+            Animate();
             animator.SetBool("InEncounter", false); // NOTE: Animations may need to be set here if another way cannot be found...
+
         }
         else if (SceneManager.GetActiveScene().name == "EncounterScene1")
         {
             animator.SetBool("InEncounter", true);
         }
-        Animate();
+        //Debug.Log(isPlayersTurn);
     }
 
     void ProcessInputs()
@@ -84,21 +117,139 @@ public class CharacterController : MonoBehaviour
         animator.SetFloat("Speed", movementDirection.sqrMagnitude);
     }
 
-    public void Ability1()
+    public void UseAbility(int abilityID)
     {
-        Debug.Log("Player used Ability1");
-        //isPlayersTurn = false;
+        observer = GameObject.FindWithTag("CombatObserver");
+        obsScript = observer.GetComponent<ObserverBehaviour>();
+
+        if (playerTurn)
+        {
+            GameObject enemy = GameObject.FindWithTag("Enemy"); //This should probably be moved to ObserverBehaviour
+            int randomInt = Random.Range(0, 10);
+            if (!isStunned)
+            {
+                if (abilityID == 1)
+                {
+                    Debug.Log("Player used Slash");
+                    obsScript.SetText("Player used Slash!");
+                    enemy.GetComponent<EnemyController>().DamageEnemy(slashDamage);
+                }
+                else if (abilityID == 2)
+                {
+                    Debug.Log("Player used Quick Strike");
+                    obsScript.SetText("Player used Quick Strike!");
+                    randomInt = Random.Range(0, 100);
+                    if (randomInt <= quickStrikeCritChance)
+                    {
+                        enemy.GetComponent<EnemyController>().DamageEnemy(slashDamage * 2);
+                    }
+                    else
+                    {
+                        enemy.GetComponent<EnemyController>().DamageEnemy(slashDamage);
+                    }
+                }
+                else if (abilityID == 3)
+                {
+                    Debug.Log("Player used Thunderbolt");
+                    randomInt = Random.Range(0, 100);
+                    obsScript.SetText("Player used Thunderbolt!");
+                    enemy.GetComponent<EnemyController>().DamageEnemy(slashDamage * 2);
+                    if (randomInt <= stunChance)
+                    {
+                        enemy.GetComponent<EnemyController>().isStunned = true;
+                    }
+                }
+                else if (abilityID == 4)
+                {
+                    if (!isCharged)
+                    {
+                        Debug.Log("Player is charging up");
+                        obsScript.SetText("Player is charging up...");
+                        isCharged = true;
+                    }
+                    else
+                    {
+                        enemy.GetComponent<EnemyController>().DamageEnemy(enemy.GetComponent<EnemyController>().enemyHealth - 1);
+                        isCharged = false;
+                        Debug.Log("Player lands a massive strike!");
+                        obsScript.SetText("Player lands a massive strike!");
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log("You are stunned.");
+                obsScript.SetText("Player is stunned.");
+                isStunned = false;
+            }
+            playerTurn = false;
+        }
     }
 
-    public void Ability2()
+    public bool AbilityLockCheck(int ability)
     {
-        Debug.Log("Player used Ability2");
-        //isPlayersTurn = false;
+        if (ability == 3)
+        {
+            return isAbility3Locked;
+        }
+        else if (ability == 4)
+        {
+            return isAbility4Locked;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-    public void Ability3()
+    public void SetPlayersTurn(bool turn)
     {
-        Debug.Log("Player used Ability3");
-        //isPlayersTurn = false;
+        playerTurn = turn;
+    }
+
+    public void DamagePlayer(float damage)
+    {
+        Health -= damage;
+        if (Health <= 0)
+        {
+            TriggerDeath();
+            Debug.Log("You have died.");
+            obsScript.SetText("You have been defeated.");
+        }
+    }
+
+    void TriggerDeath()
+    {
+        observer.GetComponent<ObserverBehaviour>().PlayerWins(false);
+    }
+
+    public void AwardPlayer(int bonusScore)
+    {
+        playerScore += bonusScore;
+
+        if (isAbility3Locked)
+        {
+            isAbility3Locked = false;
+        }
+        else if (isAbility4Locked)
+        {
+            isAbility4Locked = false;
+        }
+    }
+
+    public void PauseGame()
+    {
+        //pauseCanvas = GameObject.FindWithTag("PauseCanvas");
+        isPaused = true;
+        Time.timeScale = 0;
+        pauseCanvas.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        //pauseCanvas = GameObject.FindWithTag("PauseCanvas");
+        isPaused = false;
+        Time.timeScale = 1;
+        pauseCanvas.SetActive(false);
     }
 }

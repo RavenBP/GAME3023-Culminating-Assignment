@@ -23,7 +23,6 @@ public class LongGrassBehaviour : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            Debug.Log("You have stepped in Long Grass.");
             if (encounterController.tag == "GameController")
             {
                 if (encounterController.GetComponent<EncounterObserverBehaviour>() != null)

@@ -25,12 +25,19 @@ public class Footsteps : MonoBehaviour
     TileBase gravelTile;
     [SerializeField]
     TileBase woodTile;
-
+    
     private GameObject tilemapGO;
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player");
 
+    }
+    
     // Play appropriate sound for specified tile.
     void PlayFootstepSound()
     {
+        tilemapGO = GameObject.FindWithTag("BaseTilemap");
+
         if (SceneManager.GetActiveScene().name == "GameScene")
         {
             tilemapGO = GameObject.FindWithTag("BaseTilemap");
@@ -47,28 +54,28 @@ public class Footsteps : MonoBehaviour
             footstepSource.clip = footstepClips[0];
             footstepSource.Play();
 
-            Debug.Log("Player is on a grass tile");
+            //Debug.Log("Player is on a grass tile");
         }
         else if (tilemapGO.GetComponent<Tilemap>().GetTile(tilemapPositionI) == floorTile)
         {
             footstepSource.clip = footstepClips[1];
             footstepSource.Play();
 
-            Debug.Log("Player is on a floor tile");
+            //Debug.Log("Player is on a floor tile");
         }
         else if (tilemapGO.GetComponent<Tilemap>().GetTile(tilemapPositionI) == gravelTile)
         {
             footstepSource.clip = footstepClips[0];
             footstepSource.Play();
 
-            Debug.Log("Player is on a gravel tile");
+            //Debug.Log("Player is on a gravel tile");
         }
         else if (tilemapGO.GetComponent<Tilemap>().GetTile(tilemapPositionI) == woodTile)
         {
             footstepSource.clip = footstepClips[1];
             footstepSource.Play();
 
-            Debug.Log("Player is on a wood tile");
+            //Debug.Log("Player is on a wood tile");
         }
     }
 }

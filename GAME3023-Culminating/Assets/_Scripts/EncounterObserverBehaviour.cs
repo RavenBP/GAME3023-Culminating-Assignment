@@ -11,16 +11,29 @@ public class EncounterObserverBehaviour : MonoBehaviour
     public float CurrentEncounterChance = 0;
     public string EncounterSceneName = "EncounterScene1";
     public GameObject player;
+    public bool testEncounterSwitch = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        if(GameObject.FindWithTag("Player") == null)
+        if (GameObject.FindWithTag("Player") == null)
         {
             Instantiate(player, new Vector3(1, -1, 0), Quaternion.identity); // NOTE: I believe that since the player is being instantiated here, the animator is being "lost" whenever the player returns from the EncounterScene
 
             player = GameObject.FindWithTag("Player");
 
             LoadLastSave();
+        }
+        player = GameObject.FindWithTag("Player");
+    }
+
+    void Update()
+    {
+        if (testEncounterSwitch)
+        {
+            SceneManager.LoadScene(EncounterSceneName);
+            DontDestroyOnLoad(player);
         }
     }
 
@@ -35,10 +48,6 @@ public class EncounterObserverBehaviour : MonoBehaviour
             DontDestroyOnLoad(player);
             //player.GetComponent<CharacterController>().animator.Play("Base Layer.PlayerIdle");
         }
-        else
-        {
-            //No encounter here
-        }
     }
 
     void LoadLastSave()
@@ -46,10 +55,10 @@ public class EncounterObserverBehaviour : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayer();
 
         Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        player.transform.position = position;
+        //position.x = data.position[0];
+        //position.y = data.position[1];
+        //position.z = data.position[2];
+        //player.transform.position = position;
 
         Debug.Log("Position Loaded as: " + transform.position);
     }

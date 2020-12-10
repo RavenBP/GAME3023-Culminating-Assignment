@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - BaseTilemap
+  - Enemy
+  - CombatObserver
+  - PauseCanvas
   layers:
   - Default
   - TransparentFX

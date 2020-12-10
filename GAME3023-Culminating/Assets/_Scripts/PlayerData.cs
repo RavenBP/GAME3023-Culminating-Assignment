@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerData
 {
     public float[] position;
+    public bool ability3Locked;
+    public bool ability4Locked;
 
     public PlayerData(CharacterController player)
     {
@@ -13,5 +15,8 @@ public class PlayerData
         position[0] = player.transform.position.x;
         position[1] = player.transform.position.y;
         position[2] = player.transform.position.z;
+        ability3Locked = player.isAbility3Locked;
+        Debug.Log(ability3Locked);
+        ability4Locked = player.isAbility4Locked;
     }
 }

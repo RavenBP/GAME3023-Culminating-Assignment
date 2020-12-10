@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 8267459899018412451}
   - component: {fileID: 8267459899018412450}
   - component: {fileID: 8267459899018412445}
-  - component: {fileID: 4680463796985138074}
+  - component: {fileID: -8662301668712558648}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4680463796985138074
+--- !u!114 &-8662301668712558648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,6 +115,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334eec06fa4d177419150f6141b5d53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GolemAnimation: {fileID: 7400000, guid: 2dc5b4c54378ade4e9057ab85d7d4a38, type: 2}
-  DemonAnimation: {fileID: 7400000, guid: e729824fe81b3a642ae50687aebdbe59, type: 2}
+  hp: 100
+  hpMax: 100
   animator: {fileID: 8267459899018412445}
+  enemyHealth: 75
+  biteDamage: 15
+  lightningDamage: 10
+  lightningStunChance: 50
+  fleeChance: 33
+  struggleChance: 25
+  scoreValue: 50
+  isStunned: 0
