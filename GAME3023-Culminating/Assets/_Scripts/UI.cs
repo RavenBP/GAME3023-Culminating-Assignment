@@ -12,7 +12,17 @@ public class UI : MonoBehaviour
         if (GameObject.FindWithTag("Player") != null)
         {
             player = GameObject.FindWithTag("Player");
-            player.GetComponent<CharacterController>().LoadPlayer();
+
+            if (System.IO.File.Exists("player.save"))
+            {
+                Debug.Log("Save file found!");
+                player.GetComponent<CharacterController>().LoadPlayer();
+            }
+            else
+            {
+                Debug.Log("Save file not found!");
+                SceneManager.LoadScene("GameScene");
+            }
         }
         SceneManager.LoadScene("GameScene");
     }

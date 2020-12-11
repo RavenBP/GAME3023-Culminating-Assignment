@@ -1649,7 +1649,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 174340416}
+  m_Camera: {fileID: 1800967901}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2813,6 +2813,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1800967901 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 279203473381224507, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
+  m_PrefabInstance: {fileID: 1820626234}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1814007455
 GameObject:
   m_ObjectHideFlags: 0
@@ -2958,13 +2963,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 279203471822799820, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 279203471822799822, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.23
       objectReference: {fileID: 0}
     - target: {fileID: 279203471822799822, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.12
       objectReference: {fileID: 0}
     - target: {fileID: 279203471822799822, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3030,6 +3039,10 @@ PrefabInstance:
       propertyPath: audioClips.Array.data[4]
       value: 
       objectReference: {fileID: 8300000, guid: a5dbb518c1078154697a748913d8ec7d, type: 3}
+    - target: {fileID: 279203473381224504, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65efaab4671f2aa4aa7ecf142cfaf1eb, type: 3}
 --- !u!1 &2057516586
