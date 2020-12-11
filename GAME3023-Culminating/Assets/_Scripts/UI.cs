@@ -17,6 +17,7 @@ public class UI : MonoBehaviour
             {
                 Debug.Log("Save file found!");
                 player.GetComponent<CharacterController>().LoadPlayer();
+                SceneManager.LoadScene("GameScene");
             }
             else
             {
@@ -24,7 +25,6 @@ public class UI : MonoBehaviour
                 SceneManager.LoadScene("GameScene");
             }
         }
-        SceneManager.LoadScene("GameScene");
     }
 
     public void ExitGame()
